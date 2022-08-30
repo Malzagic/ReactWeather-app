@@ -43,7 +43,7 @@ export const WeatherApiProvider = ({ children }) => {
 
   return (
     <WeatherApiContext.Provider value={{
-      weather: state.weather,
+      main: state.main,
       loading: state.loading,
       getWeather,
       setLoading,

@@ -12,9 +12,7 @@ function Location() {
   }, []);
 
 
-  if(loading) {
-    return <Spinner />
-  } else {
+  if(!loading) {
     return (
       <div className="container mt-5">
         <div className="row justify-content-center">
@@ -24,6 +22,8 @@ function Location() {
         </div>
       </div>
     )
+  } else {
+    return <Spinner />
   }
 }
 
