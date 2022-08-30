@@ -1,24 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import Location from "./components/Location";
+import { WeatherApiProvider } from "./components/context/WeatherApiContext";
+import "bootswatch/dist/morph/bootstrap.min.css";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <WeatherApiProvider>
+      <nav className="navbar navbar-light bg-light">
+        <div className="container-fluid justify-content-center">
+          <span className="navbar-brand mb-0 h1 fw-bold">React WeatherApp</span>
+        </div>
+      </nav>
+      <header>
+        <Location />
       </header>
-    </div>
+    </WeatherApiProvider>
   );
 }
 
