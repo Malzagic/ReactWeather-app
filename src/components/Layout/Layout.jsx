@@ -34,7 +34,7 @@ function Layout() {
 
   if(data === null) return
   if(!loading) return <Spinner />
-
+  let number = 0;
   const {
     name,
     main: {
@@ -49,7 +49,7 @@ function Layout() {
       country,
     },
     weather: {
-      [0]: {
+      [number]: {
         description,
         id,
         main,
@@ -60,7 +60,6 @@ function Layout() {
     },
   } = data;
 
-  console.log(data)
 
   const celciousFeels_like = (feels_like - 273.15).toFixed(0).toString();
   const celciousTemp = (temp - 273.15).toFixed(0).toString();
