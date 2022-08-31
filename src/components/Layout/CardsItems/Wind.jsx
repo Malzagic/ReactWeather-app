@@ -1,7 +1,7 @@
 import React from 'react';
-import { WiThermometer } from 'react-icons/wi';
+import { WiStrongWind } from 'react-icons/wi'
 
-function TempMax({tempMax}) {
+function Wind({wind}) {
   return (
     <div className='col-sm-6 col-md-4 col-lg-2 mt-0 mt-md-2 mt-lg-5 px-0 px-md-1 px-lg-2'>
       <div className="card">
@@ -10,9 +10,9 @@ function TempMax({tempMax}) {
           <div className="card-body p-0 d-flex align-items-center justify-content-center">
             <div className="card-text fs-1 fw-bold">
               <div>
-                <WiThermometer className='w-50 h-50'/> 
+                <WiStrongWind className='w-50 h-50'/> 
               </div>
-              {tempMax}
+              {wind}
             </div>
           </div>
         </div>
@@ -21,4 +21,4 @@ function TempMax({tempMax}) {
   )
 }
 
-export default TempMax
+export default Wind

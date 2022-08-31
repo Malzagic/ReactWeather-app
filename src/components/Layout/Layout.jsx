@@ -3,8 +3,10 @@ import { WiCelsius, WiDayThunderstorm, WiDayRainMix, WiDaySnow, WiFog, WiDaySunn
 import Spinner from '../shared/Spinner';
 import FeelsLike from './CardsItems/FeelsLike';
 import Humidity from './CardsItems/Humidity';
+import Pressure from './CardsItems/Pressure';
 import TempMax from './CardsItems/TempMax';
 import TempMin from './CardsItems/TempMin';
+import Wind from './CardsItems/Wind';
 
 const WEATHER_URL = process.env.REACT_APP_WEATHER_URL;
 const WEATHER_TOKEN = process.env.REACT_APP_WEATHER_TOKEN;
@@ -59,7 +61,7 @@ function Layout() {
     },
   } = data;
 
-  // console.log(data)
+  console.log(data)
 
   const celciousFeels_like = (feels_like - 273.15).toFixed(0).toString();
   const celciousTemp = (temp - 273.15).toFixed(0).toString();
@@ -85,7 +87,7 @@ function Layout() {
   }
 
   return (
-    <div className="container">
+    <div className="container mb-5 mb-md-0 mb-lg-0">
       <div className='card text-center'>
         <div className="container mt-5">
           <h2 className="card-title mt-2 fs-1 fw-bold">{name}, {country}<span></span></h2>
@@ -94,7 +96,7 @@ function Layout() {
           </figure>
           <h3 className="card-text fw-bold">{celciousTemp} <WiCelsius className='fs-1' /></h3>
           <div className="card-body">
-            <div className="card-text fs-3 fw-bold">{description}</div>
+            <div className="card-text fs-3 fw-bold">{main}: {description}</div>
           </div>
         </div>
       </div>
@@ -102,7 +104,9 @@ function Layout() {
         <FeelsLike feelsLike={celciousFeels_like}/>
         <TempMax tempMax={celciousTemp_Max}/>
         <TempMin tempMin={celciousTemp_Min}/>
-        <Humidity humidity={humidity}/>  
+        <Humidity humidity={humidity}/>
+        <Pressure pressure={pressure}/>
+        <Wind wind={speed}/>
       </div>
     </div> 
   )
