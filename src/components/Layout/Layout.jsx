@@ -51,7 +51,6 @@ function Layout() {
     weather: {
       [0]: {
         description,
-        icon,
         id,
         main,
       },
@@ -91,7 +90,7 @@ function Layout() {
       <div className='card text-center'>
         <div className="container mt-5">
           <h2 className="card-title mt-2 fs-1 fw-bold">{name}, {country}<span></span></h2>
-          <figure className='card-image' on>
+          <figure className='card-image'>
             {icons(id)}
           </figure>
           <h3 className="card-text fw-bold">{celciousTemp} <WiCelsius className='fs-1' /></h3>
