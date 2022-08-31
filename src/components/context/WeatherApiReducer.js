@@ -3,8 +3,13 @@ const WeatherApiReducer = (state, action) => {
     case 'GET_WEATHER':
       return {
         ...state,
-        weather: action.payload,
+        data: action.payload,
         loading: false,
+      }
+    case 'SET_LOADING':
+      return {
+        ...state,
+        loading: true,
       }
     default:
       return state

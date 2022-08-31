@@ -1,21 +1,20 @@
 import React from "react";
-import Location from "./components/Location";
-import { WeatherApiProvider } from "./components/context/WeatherApiContext";
+import Layout from './components/Layout/Layout';
 import "bootswatch/dist/morph/bootstrap.min.css";
 
 function App() {
   return (
-    <WeatherApiProvider>
+    <>
       <nav className="navbar navbar-light bg-light">
         <div className="container-fluid justify-content-center">
-          <span className="navbar-brand mb-0 h1 fw-bold">React WeatherApp</span>
+          <span className="navbar-brand mx-auto mb-0 h1 fw-bold">React WeatherApp</span>
         </div>
       </nav>
-      <header>
-        <Location />
-      </header>
-    </WeatherApiProvider>
-  );
+      <main className="mt-5">
+        <Layout />
+      </main>
+    </>
+);
 }
 
 export default App;
