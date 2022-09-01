@@ -1,5 +1,5 @@
-import { createContext, useState, useReducer } from "react";
-import WeatherApiReducer from "./WeatherApiReducer";
+import { createContext, useReducer } from "react";
+import WeatherApiReducer from './WeatherApiReducer'
 
 const WeatherApiContext = createContext();
 
@@ -7,31 +7,32 @@ const WEATHER_URL = process.env.REACT_APP_WEATHER_URL;
 const WEATHER_TOKEN = process.env.REACT_APP_WEATHER_TOKEN;
 
 export const WeatherApiProvider = ({ children }) => {
-  const [data, setData] = useState(null);
-
-
   const initialState = {
-    data: [data],
+    data: [],
     loading: false,
   }
 
   const [state, dispatch] = useReducer(WeatherApiReducer, initialState);
 
 
-  const fetchData = async () => {
-    setLoading(false);
+  const fetchData = async (location) => {
+    setLoading();
 
-    const response = await fetch(`${WEATHER_URL}?q=szczecin&appid=${WEATHER_TOKEN}`);
+    if(location === null) return location = 'szczecin';
 
-    const json = await response.json();
+    const response = await fetch(`${WEATHER_URL}?q=${location}&appid=${WEATHER_TOKEN}`);
 
-    setData(json);
+    const data = await response.json();
+
+    // console.log(data)
+
+    dispatch({
+      type: 'GET_WEATHER',
+      payload: data,
+    });
   }
 
-  fetchData()
-    .catch(console.error);
-
-
+  // Set loading
   const setLoading = () => {
     dispatch({type: 'SET_LOADING'});
   }
