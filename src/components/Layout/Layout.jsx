@@ -79,7 +79,7 @@ function Layout() {
   
   if(!loading) {
     return (
-      <div className="container mb-5 mb-md-0 mb-lg-0">
+      <div className="container mb-5">
         <div className='card text-center'>
           <div className="container mt-5">
             <h2 className="card-title mt-2 fs-1 fw-bold">{name}, {country}<span></span></h2>
