@@ -1,10 +1,11 @@
 import { createContext, useReducer } from "react";
-import WeatherApiReducer from './WeatherApiReducer'
+import WeatherApiReducer from './WeatherApiReducer';
 
 const WeatherApiContext = createContext();
 
 const WEATHER_URL = process.env.REACT_APP_WEATHER_URL;
 const WEATHER_TOKEN = process.env.REACT_APP_WEATHER_TOKEN;
+
 
 export const WeatherApiProvider = ({ children }) => {
   const initialState = {
@@ -14,22 +15,31 @@ export const WeatherApiProvider = ({ children }) => {
 
   const [state, dispatch] = useReducer(WeatherApiReducer, initialState);
 
+  const fetchData = async (cityName) => {
 
-  const fetchData = async (location) => {
-    setLoading();
+    if(cityName === '' || cityName === null || cityName === undefined) return;
 
-    if(location === null) return location = 'szczecin';
-
-    const response = await fetch(`${WEATHER_URL}?q=${location}&appid=${WEATHER_TOKEN}`);
-
+    const response = await fetch(`${WEATHER_URL}?q=${cityName}&appid=${WEATHER_TOKEN}`);
+    if(response.status === 404) return;
     const data = await response.json();
-
-    // console.log(data)
 
     dispatch({
       type: 'GET_WEATHER',
       payload: data,
     });
+    setLoading(true);
+  }
+
+  const startData = async (lat, lon) => {
+    const response = await fetch(`${WEATHER_URL}?lat=${lat}&lon=${lon}&appid=${WEATHER_TOKEN}`);
+    if(response.status === 404) return;
+    const data = await response.json();
+
+    dispatch({
+      type: 'GET_WEATHER',
+      payload: data,
+    });
+    setLoading(true);
   }
 
   // Set loading
@@ -43,6 +53,7 @@ export const WeatherApiProvider = ({ children }) => {
       data: state.data,
       loading: state.loading,
       fetchData,
+      startData,
       setLoading,
     }}>
       {children}
