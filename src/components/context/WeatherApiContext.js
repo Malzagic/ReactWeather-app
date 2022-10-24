@@ -1,4 +1,5 @@
 import { createContext, useReducer } from "react";
+import { toast } from "react-toastify";
 import WeatherApiReducer from './WeatherApiReducer';
 
 const WeatherApiContext = createContext();
@@ -17,17 +18,20 @@ export const WeatherApiProvider = ({ children }) => {
 
   const fetchData = async (cityName) => {
 
-    if(cityName === '' || cityName === null || cityName === undefined) return;
+    if(cityName === '' || cityName === null || cityName === undefined) return toast.error('Please type location');
 
     const response = await fetch(`${WEATHER_URL}?q=${cityName}&appid=${WEATHER_TOKEN}`);
-    if(response.status === 404) return;
+    if(response.status === 404) {
+      setLoading(false);
+      return toast.error('Bad city name!');
+    }
     const data = await response.json();
 
     dispatch({
       type: 'GET_WEATHER',
       payload: data,
     });
-    setLoading(true);
+    if(response.status === 200) return setLoading(true);
   }
 
   const startData = async (lat, lon) => {

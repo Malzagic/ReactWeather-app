@@ -3,7 +3,6 @@ import WeatherApiContext from '../context/WeatherApiContext';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
-import {toast} from 'react-toastify';
 import "bootswatch/dist/morph/bootstrap.min.css";
 
 function GetLocationModal() {
@@ -19,12 +18,8 @@ function GetLocationModal() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    if(location === null) {
-      toast.error('Please type location');
-    } else {
-      fetchData(location);
-    }
+    fetchData(location);
+    setLocation(null);
   }
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);

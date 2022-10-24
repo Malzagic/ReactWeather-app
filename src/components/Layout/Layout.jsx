@@ -26,6 +26,7 @@ function Layout() {
       setLoading(false);
       toast.error('Geolocation is not available in your browser!')
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
 
@@ -83,8 +84,9 @@ function Layout() {
     }
   }
 
-  if(loading === false) return <Spinner />
-  else return (
+  if(loading === false) {
+    return <Spinner />
+  } else return (
     <div className="container mb-5">
       <div className='card text-center'>
         <div className="container mt-5">
